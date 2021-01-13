@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+    Because the window insets on round devices are larger than 15dp, this padding only applies
+    to square screens.
+    -->
+    <dimen name="box_inset_layout_padding">0dp</dimen>
+
+    <!--
+    This padding applies to both square and round screens. The total padding between the buttons
+    and the window insets is box_inset_layout_padding (above variable) on square screens and
+    inner_frame_layout_padding (below variable) on round screens.
+    -->
+    <dimen name="inner_frame_layout_padding">5dp</dimen>
+    <dimen name="title_text_size">15sp</dimen>
+    <dimen name="city_name_size">20sp</dimen>
+    <dimen name="city_size_size">12sp</dimen>
+    <dimen name="city_progress_size">11sp</dimen>
+    <dimen name="normal_margin">10dp</dimen>
+    <dimen name="font_58">29dp</dimen>
+    <dimen name="font_170">85dp</dimen>
+
+    <dimen name="offline_down_title_hight">25dp</dimen>
+    <dimen name="font_22">11sp</dimen>
+    <dimen name="font_24">12sp</dimen>
+    <dimen name="font_26">13sp</dimen>
+    <dimen name="font_28">14sp</dimen>
+    <dimen name="font_30">15sp</dimen>
+    <dimen name="font_32">16sp</dimen>
+    <dimen name="font_34">17sp</dimen>
+    <dimen name="font_36">18sp</dimen>
+
+    <dimen name="poi_title_size">20sp</dimen>
+    <dimen name="poi_field_size">16sp</dimen>
+    <dimen name="margin_left">15dp</dimen>
+    <dimen name="margin_right">15dp</dimen>
+    <dimen name="margin_middle">2dp</dimen>
+</resources>
