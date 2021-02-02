@@ -1,7 +1,7 @@
 # Location2Mqtt
 ## android手机获取位置信息并发送到MQTT服务器
 
-### 1、获取 [高德地图key](https://lbs.amap.com/api/android-location-sdk/guide/create-project/get-key) ( android应用)包名：**com.ljs.location2mqtt**，申请完替换\app\src\main\AndroidManifest.xml文件下面节点中的key,如果失败参照 [本链接](https://blog.csdn.net/m0_37471638/article/details/76849958) 解决  
+### 1、(如果不想自己编辑修改可直接下载apk文件安装并跳至步骤3)获取 [高德地图key](https://lbs.amap.com/api/android-location-sdk/guide/create-project/get-key) ( android应用)包名：**com.ljs.location2mqtt**，申请完替换\app\src\main\AndroidManifest.xml文件下面节点中的key,如果失败参照 [本链接](https://blog.csdn.net/m0_37471638/article/details/76849958) 解决  
 
 <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -10,6 +10,8 @@
 ### 2、编译生成apk安装到自己的手机上或者下载release文件安装
 
 ### 3、配置app,给app相应的权限：定位总是允许（应用管理里）、系统设置允许、自启动允许
+
+
 
 
 
