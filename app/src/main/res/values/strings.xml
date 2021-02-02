@@ -27,4 +27,12 @@
 
     <string name="defaultInteval">2000</string>
     <string name="defaultHttpTimeout">30000</string>
+    <string name="broker_ip">Broker主机地址</string>
+    <string name="port">端口号</string>
+    <string name="client_id">客户端ID</string>
+    <string name="random_id">随机生成</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="period">更新周期(s)</string>
+    <string name="start">开始</string>
 </resources>

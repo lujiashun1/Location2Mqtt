@@ -20,7 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Broker主机地址"
+            android:text="@string/broker_ip"
             />
         <EditText
             android:id="@+id/txtUrl"
@@ -40,7 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="端口号"
+            android:text="@string/port"
             />
         <EditText
             android:id="@+id/txtPort"
@@ -62,14 +62,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="客户端ID"/>
+            android:text="@string/client_id"/>
 
         <Button
             android:id="@+id/btnID"
             android:layout_width="wrap_content"
 
             android:layout_height="wrap_content"
-            android:text="随机生成"/>
+            android:text="@string/random_id"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -93,7 +93,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="用户名"/>
+            android:text="@string/username"/>
         <EditText
             android:id="@+id/txtName"
             android:layout_width="0dp"
@@ -111,7 +111,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="密码"/>
+            android:text="@string/password"/>
         <EditText
             android:id="@+id/txtPass"
             android:layout_width="0dp"
@@ -181,7 +181,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="更新周期(s)"/>
+            android:text="@string/period"/>
         <EditText
             android:id="@+id/txtTime"
             android:layout_width="0dp"
@@ -222,7 +222,7 @@
 
             android:layout_gravity="center"
 
-            android:text="开始"/>
+            android:text="@string/start"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -99,6 +99,7 @@ public class ltmService extends Service {
             }
             cursor.close();
             db.close();
+            dataBaseOpenHelper.close();
             try {
                 client = new MqttClient(HOST, clientid, new MemoryPersistence());
             } catch (MqttException e) {
@@ -151,14 +152,17 @@ public class ltmService extends Service {
 
             serviceIntent = new Intent();
             serviceIntent.setClass(this, LocationForcegroundService.class);
-            locationClient = new AMapLocationClient(this.getApplicationContext());
+            if(locationClient!=null&&locationClient.isStarted()) {
+                locationClient.stopLocation();
+                locationClient.unRegisterLocationListener(locationListener);
+            }else {
+                locationClient = new AMapLocationClient(this.getApplicationContext());
+            }
             locationOption = getDefaultOption();
             //设置定位参数
             locationClient.setLocationOption(locationOption);
             // 设置定位监听
             locationClient.setLocationListener(locationListener);
-
-            locationClient.setLocationOption(locationOption);
             // 启动定位
             locationClient.startLocation();
             isSartLocation = true;
@@ -210,14 +214,10 @@ public class ltmService extends Service {
     AMapLocationListener locationListener = new AMapLocationListener() {
         @Override
         public void onLocationChanged(AMapLocation location) {
-            Log.d(TAG, "onLocationChanged: -2");
             if (null != location) {
-                Log.d(TAG, "onLocationChanged: -1");
                 StringBuffer sb = new StringBuffer();
                 //errCode等于0代表定位成功，其他的为定位失败，具体的可以参照官网定位错误码说明
                 if(location.getErrorCode() == 0){
-
-                    Log.d(TAG, "onLocationChanged: 0");
                     MqttMessage msg = new MqttMessage();
                     double lat = location.getLatitude();
                     double lon = location.getLongitude();
@@ -242,7 +242,7 @@ public class ltmService extends Service {
                     String address = location.getAddress();
                     String poiName = location.getPoiName();
                     //String str = "{\"latitude\":" + lat + ",\"longitude\":" + lon + ",\"gps_accuracy\":" + acc  + ",\"battery\":" + battery + "}";
-                    String str="{    \"latitude\":"+lat+",    \"longitude\":"+lon+",    \"altitude\":"+alt+",    \"gps_accuracy\":"+acc+",    \"battery\":"+battery+",    \"info\":{        \"speed\":"+speed+",        \"bearing\":"+bearing+",        \"satellites\":"+satellites+",        \"country\":\""+country+"\",        \"province\":\""+province+"\",        \"city\":\""+city+"\",        \"citycode\":\""+cityCode+"\",        \"district\":\""+district+"\",        \"adcode\":\""+adCode+"\",\"street\":\""+street+"\", \"streetnum\":\""+streetNum+"\",       \"address\":\""+address+"\",        \"poiname\":\""+poiName+"\"    }}";
+                    String str="{\"latitude\":"+lat+",\"longitude\":"+lon+",\"altitude\":"+alt+",\"gps_accuracy\":"+acc+",\"battery\":"+battery+",\"info\":{\"speed\":"+speed+",\"bearing\":"+bearing+",\"satellites\":"+satellites+",\"country\":\""+country+"\",\"province\":\""+province+"\",\"city\":\""+city+"\",\"citycode\":\""+cityCode+"\",\"district\":\""+district+"\",\"adcode\":\""+adCode+"\",\"street\":\""+street+"\",\"streetnum\":\""+streetNum+"\",\"address\":\""+address+"\",\"poiname\":\""+poiName+"\"}}";
                     msg.setPayload(str.getBytes());
                     msg.setQos(0);
                     msg.setRetained(true);
@@ -360,13 +360,13 @@ public class ltmService extends Service {
     @Override
     public void onDestroy() {   //com.ljs.ltmservice.start
         Log.d(TAG, "onDestroy: ");
-        if(null != serviceIntent){
-            stopService(serviceIntent);
-        }
-        stopForeground(true);
+//        if(null != serviceIntent){
+//            stopService(serviceIntent);
+//        }
+//        stopForeground(true);
         Intent  intent=new Intent("com.ljs.ltmservice.start");
         sendBroadcast(intent);
-        super.onDestroy();
+        //super.onDestroy();
     }
 
 
