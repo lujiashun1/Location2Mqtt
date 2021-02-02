@@ -13,24 +13,35 @@
 
 
 
-<img src="C:\Users\Administrator\Desktop\IMG_20210202_113646.png" alt="IMG_20210202_113646" style="zoom: 33%;" />
+<img src="https://raw.githubusercontent.com/lujiashun1/picture/master/img/IMG_20210202_113646.png?token=ABQZ77523ZHGHPX6QCQZ46DADDPX4" alt="IMG_20210202_113646" style="zoom:25%;" />
 
 ### 4、HA配置：
 
 - 根据APP下方提示在device_tracker下增加相应的代码
 
+  ```yaml
+    - platform: mqtt_json
+      devices:
+         myphone: 'location/myphone'
+  ```
+
+  ![QQ截图20210202114557](https://raw.githubusercontent.com/lujiashun1/picture/master/img/QQ%E6%88%AA%E5%9B%BE20210202114557.png?token=ABQZ772THRRSDCDEDZSP5JTADDPV2)
+
 - sensor下增加如下代码可显示电量及地址、速度等信息
 
-   \- platform: mqtt
-    state_topic: "location/myphone"
-    name: "Battery Level"
-    unit_of_measurement: "%"
-    value_template: '{{ value_json.battery }}'
-   \- platform: mqtt
-    state_topic: "location/myphone"
-    name: "Location Info"
-    value_template: '{{ value_json.info.address }}'
-    json_attributes_topic: "location/myphone"
-    json_attributes_template: "{{ value_json.info | tojson }}"
+  ```yaml
+    - platform: mqtt
+      state_topic: "location/myphone"
+      name: "Battery Level"
+      unit_of_measurement: "%"
+      value_template: '{{ value_json.battery }}'
+    - platform: mqtt
+      state_topic: "location/myphone"
+      name: "Location Info"
+      value_template: '{{ value_json.info.address }}'
+      json_attributes_topic: "location/myphone"
+      json_attributes_template: "{{ value_json.info | tojson }}"
+  
+  ```
 
-  QQ截图![20210202114557](C:\Users\Administrator\Desktop\QQ截图20210202114557.png)
+  ![QQ截图20210202114657](https://raw.githubusercontent.com/lujiashun1/picture/master/img/QQ%E6%88%AA%E5%9B%BE20210202114657.png?token=ABQZ774ODDY2JYSDNJDMY33ADDPWW)
