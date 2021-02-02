@@ -8,8 +8,9 @@
 
 
 
-
-
+<com.ljs.location2mqtt.FlowLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -196,13 +197,13 @@
         android:layout_weight="1"
         android:orientation="horizontal"
         android:layout_gravity="center">
-    <TextView
-        android:id="@+id/lblHaconfig"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text=""
-        />
+        <TextView
+            android:id="@+id/lblHaconfig"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text=""
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -229,6 +230,10 @@
             android:layout_weight="1"
             android:text=""/>
     </LinearLayout>
+
+</com.ljs.location2mqtt.FlowLayout>
+
+
 
 
 </LinearLayout>
