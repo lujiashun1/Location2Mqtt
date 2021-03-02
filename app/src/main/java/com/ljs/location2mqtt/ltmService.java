@@ -166,14 +166,14 @@ public class ltmService extends Service {
             locationClient.setLocationListener(locationListener);
             // 启动定位
             locationClient.startLocation();
-            if(notification_enable==1)
+            //if(notification_enable==1)
                 isSartLocation = true;
-            else
-            {
-                if(null != serviceIntent){
-                    stopService(serviceIntent);
-                }
-            }
+//            else
+//            {
+//                if(null != serviceIntent){
+//                    stopService(serviceIntent);
+//                }
+//            }
             isfrommain=false;
             Toast.makeText(getApplicationContext(), "开始定位", Toast.LENGTH_SHORT).show();
         }
