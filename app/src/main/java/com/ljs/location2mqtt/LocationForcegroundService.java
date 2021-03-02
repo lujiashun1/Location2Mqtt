@@ -39,7 +39,8 @@ public class LocationForcegroundService extends Service {
     @SuppressLint("NewApi")
     public void showNotify(){
         //调用这个方法把服务设置成前台服务
-        startForeground(Utils.NOTIFY_ID, Utils.buildNotification(getApplicationContext()));
+        if(ltmService.notification_enable==1)
+            startForeground(Utils.NOTIFY_ID, Utils.buildNotification(getApplicationContext()));
     }
 
     private final IBinder mBinder = new LocalBinder();

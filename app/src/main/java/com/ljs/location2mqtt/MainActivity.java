@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText txtUrl,txtPort,txtID,txtName,txtPass,txtTime,txtTopic;
     private Button btnID,btnStart;
     private TextView lblHaconfig;
+    private Switch sw_notification;
     String TAG="LJSTAG";
     RadioButton rb_batterySaving,rb_deviceSensors,rb_hightAccuracy;
     private RadioGroup rgLocationMode;
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         txtTopic=(EditText) findViewById(R.id.txtTopic);
         lblHaconfig=(TextView)findViewById(R.id.lblHaconfig) ;
         rgLocationMode = (RadioGroup) findViewById(R.id.rg_locationMode);
+        sw_notification=(Switch)findViewById(R.id.sw_notification) ;
         rgLocationMode.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -132,6 +135,10 @@ public class MainActivity extends AppCompatActivity {
                 default:
                     break;
             }
+            if(cursor.getInt(8)==1)
+                sw_notification.setChecked(true);
+            else
+                sw_notification.setChecked(false);
         }
         lblHaconfig.setText("冲天枭龙：请在HA configuration.yaml文件中添加一下代码(xxxxxxx替换为你想要的的名字)\ndevice_tracker:\n  - platform: mqtt_json\n    devices:\n       xxxxxxx: '"+txtTopic.getText().toString()+"'");
         cursor.close();
@@ -155,9 +162,9 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     SQLiteDatabase db = dataBaseOpenHelper.getWritableDatabase();
 
-                    String sql="update "+Contant.TABLENAME+" set url='"+txtUrl.getText().toString().trim()+"',port="+txtPort.getText().toString().trim()+",id='"+txtID.getText().toString().trim()+"',name='"+txtName.getText().toString().trim()+"',pwd='"+txtPass.getText().toString().trim()+"',time="+txtTime.getText().toString().trim()+",topic='"+txtTopic.getText().toString().trim()+"',mode="+intmode;
+                    String sql="update "+Contant.TABLENAME+" set url='"+txtUrl.getText().toString().trim()+"',port="+txtPort.getText().toString().trim()+",id='"+txtID.getText().toString().trim()+"',name='"+txtName.getText().toString().trim()+"',pwd='"+txtPass.getText().toString().trim()+"',time="+txtTime.getText().toString().trim()+",topic='"+txtTopic.getText().toString().trim()+"',mode="+intmode+",notification_enable="+(sw_notification.isChecked()?1:0);
                     db.execSQL(sql);
-                    lblHaconfig.setText("冲天枭龙：请在HA configuration.yaml文件中添加一下代码(xxxxxxx替换为你想要的的名字)\ndevice_tracker:\n  - platform: mqtt_json\n    devices:\n       xxxxxxx: '"+txtTopic.getText().toString()+"'");
+                    lblHaconfig.setText("冲天枭龙：请在HA configuration.yaml文件中添加一下代码(xxxxxxx替换为你想要的的名字，注意:录入多个成员手机时，Topic及xxxxxxx不能相同)\ndevice_tracker:\n  - platform: mqtt_json\n    devices:\n       xxxxxxx: '"+txtTopic.getText().toString()+"'");
                     ltmService.isfrommain=true;
                     Intent intent=new Intent(MainActivity.this,ltmService.class);
                     startService(intent);

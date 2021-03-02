@@ -50,7 +50,7 @@ public class ltmService extends Service {
     Intent serviceIntent = null;
     boolean isSartLocation = false;
     double PI = 3.14159265358979324;
-    int mode=0;
+    public static int mode=0,notification_enable=0;
     public ltmService() {
     }
 
@@ -96,6 +96,7 @@ public class ltmService extends Service {
                 time = cursor.getInt(5);
                 TOPIC1 = cursor.getString(6).toString();
                 mode = cursor.getInt(7);
+                notification_enable= cursor.getInt(8);
             }
             cursor.close();
             db.close();
@@ -165,7 +166,14 @@ public class ltmService extends Service {
             locationClient.setLocationListener(locationListener);
             // 启动定位
             locationClient.startLocation();
-            isSartLocation = true;
+            if(notification_enable==1)
+                isSartLocation = true;
+            else
+            {
+                if(null != serviceIntent){
+                    stopService(serviceIntent);
+                }
+            }
             isfrommain=false;
             Toast.makeText(getApplicationContext(), "开始定位", Toast.LENGTH_SHORT).show();
         }

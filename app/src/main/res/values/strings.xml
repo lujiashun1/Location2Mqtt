@@ -35,4 +35,6 @@
     <string name="password">密码</string>
     <string name="period">更新周期(s)</string>
     <string name="start">开始</string>
+    <string name="notificaEnable">开启通知</string>
+    <string name="instruction">降低app被杀死概率</string>
 </resources>
